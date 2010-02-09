@@ -1,0 +1,9 @@
+.remote
+  - remote_form_for([:admin, @cat], :html => one_submit_only(:cat)) do |f|
+    = link_to_close edit_admin_cat_path(@cat)
+    = f.error_messages
+    = render :partial => "admin/cats/form", :locals => { :f => f, :edit => true }
+    .buttonbar
+      = f.submit t(:save_cat)
+      #{t :or}
+      = link_to_cancel edit_admin_cat_path(@cat)

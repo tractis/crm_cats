@@ -1,0 +1,17 @@
+%li[cat]{ highlightable(dom_id(cat, :tools)) }
+
+  .strip.active #{t(cat.cat_type.downcase)}
+
+  .indentfull
+    .tools{ invisible, :id => dom_id(cat, :tools) }
+      = link_to_add_child(cat) << " | "
+      = link_to_edit(cat) << " | "
+      = link_to_confirm(cat)
+      
+
+    %span.black #{cat.long_name}
+    %tt
+      = "- #{h(cat.description)}" unless cat.description.blank?
+      
+    %dt{ :style => "padding: 2px 0px 0px 0px" }
+      %span.warn #{t(:cat_created_on, cat.created_at.to_date.to_s(:mmddyy))}

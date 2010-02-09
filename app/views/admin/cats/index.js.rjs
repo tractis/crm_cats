@@ -1,0 +1,2 @@
+page[:cats].replace_html render(:partial => "cat", :collection => @cats)
+page[:paginate].replace_html render(:partial => "common/paginate")

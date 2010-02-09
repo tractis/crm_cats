@@ -80,10 +80,11 @@ class ControllerHooks < FatFreeCRM::Callback::Base
   # Somewhat simplistic parser that extracts query and hash-prefixed tags from
   # the search string and returns them as two element array, for example:
   #
-  # "$real Billy Bones $pirate" => [ "Billy Bones", "real, pirate" ]
+  # "$real Billy Bones $id" => [ "Billy Bones", "real, pirate" ]
   #----------------------------------------------------------------------------
   def parse_query_and_cats(search_string)
     query, cats = [], []
+    
     search_string.scan(/[\w$]+/).each do |token|
       if token.starts_with?("$")
         cats << token[1 .. -1]

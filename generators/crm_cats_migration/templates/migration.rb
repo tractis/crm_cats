@@ -7,7 +7,9 @@ class CrmCatsMigration < ActiveRecord::Migration
       t.string  :name
       t.text    :description
       t.string  :cat_type
-      t.string  :color     
+      t.string  :color
+      
+      t.timestamps
     end
     
     create_table :cattings do |t|

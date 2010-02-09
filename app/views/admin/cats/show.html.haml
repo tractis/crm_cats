@@ -1,0 +1,6 @@
+.title_tools
+  = link_to_inline(:edit_cat, edit_admin_cat_path(@cat), :text => t(:edit_cat))
+.title#title= h(:cat)
+%div#edit_cat{ hidden }
+
+.list#profile= render :partial => "cat" 

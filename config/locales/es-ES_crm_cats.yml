@@ -1,0 +1,15 @@
+es-ES:
+  language: Español (España)
+
+  # crm_cats plugin internalization.
+  #----------------------------------------------------------------------------
+  select_cat_type: Seleccione el tipo de categoría
+  create_root_cat: Crear categoría principal
+  cat_title: Categorías de {{value}}
+  cat_created_on: Creada el {{value}}
+  add_cat_child: Añadir hijo
+  add_cat_child_of: Añadir hijo de {{value}}
+  create_cat: Crear
+  save_cat: Guardar
+  select_cats: Seleccione las categorías (multiselección)
+  cat_filter_by: Filtrar por categoría

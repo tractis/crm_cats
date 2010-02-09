@@ -1,0 +1,8 @@
+page.call "crm.flip_form", :create_cat
+
+if params[:cancel] != "true"
+  page[:create_cat].replace_html :partial => "create"
+  page.call "crm.set_title", :create_cat, t(:add_cat_child_of, @parent.long_name.to_s)
+else
+  page.call "crm.set_title", :create_cat, t(:cat_title, t(session[:cat_type].downcase.pluralize))
+end

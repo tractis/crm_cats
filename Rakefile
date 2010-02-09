@@ -16,7 +16,7 @@ end
 desc 'Generate documentation for the crm_tags plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'CrmTags'
+  rdoc.title    = 'CrmCats'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')

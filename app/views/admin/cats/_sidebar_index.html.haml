@@ -1,0 +1,9 @@
+.filters#filters
+  %h4{ :style => "margin:0px 0 8px 0; border-bottom: 1px solid grey; padding-bottom:2px;" } #{t(:select_cat_type)}
+  %div{ :style => "margin: 0px 0px 6px 0px" }
+  %ul
+    %li= link_to t(:accounts), :controller => "admin/cats", :action => "changetype", :id => "Account"
+    %li= link_to t(:contacts), :controller => "admin/cats", :action => "changetype", :id => "Contact"
+    %li= link_to t(:leads), :controller => "admin/cats", :action => "changetype", :id => "Lead"
+    %li= link_to t(:opportunities), :controller => "admin/cats", :action => "changetype", :id => "Opportunity"
+    %li= link_to t(:campaigns), :controller => "admin/cats", :action => "changetype", :id => "Campaign"

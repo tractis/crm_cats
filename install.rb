@@ -1,16 +1,17 @@
 # Install hook code here
 puts <<-EOS
-The Tags adds tagging support to all major Fat Free CRM models. To search by tag enter its
-name prefixed by # character. For example:
+Categorization plugin for Fat Free CRM
+ 
+Adds categorization support to all major Fat Free CRM models.
+ 
+The Tags plugin depends on [awesome_nested_set] plugin which must be installed as follows:
 
-  Search: hello #world
-
-In this example "hello" is regular search string, and "world" is a tag.
-
-The Tags plugin depends on [acts-as-taggable-on] plugin which must be installed as follows:
-
-  $ ruby script/plugin install git://github.com/mbleigh/acts-as-taggable-on.git
-  $ ruby script/generate acts_as_taggable_on_migration
+  $ cd [crm_path_on_your_system] 
+  $ ruby script/plugin install git://github.com/collectiveidea/awesome_nested_set.git
+  $ cd vendor/plugins; git clone git://github.com/tractis/crm_cats.git
+  $ ruby script/generate crm_cats_migration
   $ rake db:migrate
+ 
+Copyright (c) 2010 by Tractis (https://www.tractis.com), released under the MIT License
 
 EOS

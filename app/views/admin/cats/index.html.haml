@@ -1,0 +1,10 @@
+= styles_for :cat
+
+.title_tools
+  = link_to_inline(:create_cat, new_admin_cat_path, :text => t(:create_root_cat))
+
+.title
+  %span#create_cat_title #{t(:cat_title, t(session[:cat_type].downcase.pluralize))}
+.remote#create_cat{ hidden }
+
+.list#cats= render :partial => "cat", :collection => @cats
