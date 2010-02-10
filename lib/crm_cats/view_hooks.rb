@@ -1,10 +1,9 @@
 class ViewHooks < FatFreeCRM::Callback::Base
-  #= collection_select get_category_model, get_category_model_ids, all_categories, :id, :long_name, { }, { :multiple => true, :size => '10' }
-  #= collection_select :account, :cat_ids, Cat.find(:conditions => [ "cat_type = ?", "Account" ]).sort! { |a,b| a.long_name <=> b.long_name }, :id, :long_name, { }, { :multiple => true, :size => '10' }
+  
   CATS_FIELD = <<EOS
 %tr
   %td{ :valign => :top, :colspan => span }
-    .label.req t(:cat_created_on)
+    .label.req #{I18n.t(:cat_created_on)}
     = get_cats_colletion_select
 EOS
 
@@ -18,7 +17,7 @@ EOS
 EOS
 
   CATS_FOR_LANDING = <<EOS
-.label.req t(:cat_filter_by)
+.label.req #{I18n.t(:cat_filter_by)}
 .cats= cats_for_landing  
 EOS
 

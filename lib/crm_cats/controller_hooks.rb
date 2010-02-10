@@ -77,7 +77,7 @@ class ControllerHooks < FatFreeCRM::Callback::Base
   end
 
   private
-  # Somewhat simplistic parser that extracts query and hash-prefixed tags from
+  # Somewhat simplistic parser that extracts query and hash-prefixed cats from
   # the search string and returns them as two element array, for example:
   #
   # "$real Billy Bones $id" => [ "Billy Bones", "real, pirate" ]
