@@ -8,6 +8,7 @@ class CrmCatsMigration < ActiveRecord::Migration
       t.text    :description
       t.string  :cat_type
       t.string  :color
+      t.datetime :deleted_at
       
       t.timestamps
     end
