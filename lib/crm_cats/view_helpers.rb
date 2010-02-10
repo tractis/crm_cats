@@ -33,7 +33,7 @@ module CrmCats
     # Generate cat select for filter on the landing page of each asset (shown on a sidebar).
     #----------------------------------------------------------------------------
     def cats_for_landing
-      select_tag 'filter_category', options_for_select(nested_set_options(get_cats_for_model) {|i| "#{'-' * i.level} #{i.name}" }.insert(0, '') ), { :style => "width:180px", :onchange => "crm.search_categorized(crm.get_category_filter(), '#{self.controller_name.to_s}')" }
+      select_tag 'filter_category', options_for_select(get_cats_for_model.map { |cat| [cat.long_name, cat.id] }.insert(0, ''), get_cats_search_id.to_i), { :style => "width:180px", :onchange => "crm.search_categorized(crm.get_category_filter(), '#{self.controller_name.to_s}')" }
     end
   
     # Get categories orderer by long_name for the current model
@@ -43,10 +43,22 @@ module CrmCats
       Cat.find_for_model(model).sort! { |a,b| a.long_name <=> b.long_name }
     end
     
+    # Generate the collection select for edit
+    #----------------------------------------------------------------------------    
     def get_cats_colletion_select
-      #require 'ruby-debug';debugger
       model = self.controller_name.singularize
       collection_select model, :cat_ids, get_cats_for_model, :id, :long_name, { }, { :multiple => true, :size => '10', :style => "width:240px" }
+    end
+    
+    # Returns the cat_id from the query string
+    #---------------------------------------------------------------------------- 
+    def get_cats_search_id
+      @current_query.scan(/[\w$]+/).each do |token|
+        if token.starts_with?("$")
+          return token.gsub("$","").to_i
+        end
+      end
+      return 0      
     end
     
   end
