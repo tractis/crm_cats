@@ -68,7 +68,9 @@ EOS
   [ :account, :campaign, :contact, :lead, :opportunity ].each do |model|
 
     define_method :"#{model}_top_section_bottom" do |view, context|
-      Haml::Engine.new(CATS_FIELD).render(view, :f => context[:f], :span => (model != :campaign ? 3 : 5))
+      unless Cat.find_for_model(model.to_s.camelize).empty?  
+        Haml::Engine.new(CATS_FIELD).render(view, :f => context[:f], :span => (model != :campaign ? 3 : 5))
+      end
     end
 
     define_method :"#{model}_bottom" do |view, context|
