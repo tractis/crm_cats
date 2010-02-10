@@ -156,7 +156,7 @@ class Admin::CatsController < Admin::ApplicationController
   end
   
   def set_default_type
-    session[:cat_type] = 'Account' if not defined?(session[:cat_type])
+    session[:cat_type] = 'Account' if session[:cat_type].nil?
   end
   
 end
