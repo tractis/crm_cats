@@ -53,11 +53,14 @@ module CrmCats
     # Returns the cat_id from the query string
     #---------------------------------------------------------------------------- 
     def get_cats_search_id
-      @current_query.scan(/[\w$]+/).each do |token|
-        if token.starts_with?("$")
-          return token.gsub("$","").to_i
+      unless @cuerrent_query.nil?
+        @current_query.scan(/[\w$]+/).each do |token|
+          if token.starts_with?("$")
+            return token.gsub("$","").to_i
+          end
         end
       end
+      
       return 0      
     end
     
