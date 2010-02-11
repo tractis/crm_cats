@@ -21,6 +21,8 @@ class CrmCatsMigration < ActiveRecord::Migration
     
     add_index :cattings, :cat_id
     add_index :cattings, :cattable_id
+    add_index :cats, :parent_id
+    add_index :cats, [:cat_type, :deleted_at]
   end
   
   def self.down
