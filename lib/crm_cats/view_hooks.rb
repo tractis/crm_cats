@@ -3,7 +3,7 @@ class ViewHooks < FatFreeCRM::Callback::Base
   CATS_FIELD = <<EOS
 %tr
   %td{ :valign => :top, :colspan => span }
-    .label.req #{I18n.t(:cat_created_on)}
+    .label= get_cats_translation('select_cats')
     = get_cats_colletion_select
 EOS
 
@@ -17,7 +17,7 @@ EOS
 EOS
 
   CATS_FOR_LANDING = <<EOS
-.label.req #{I18n.t(:cat_filter_by)}
+%h4= get_cats_translation('cat_filter_by')
 .cats= cats_for_landing  
 EOS
 

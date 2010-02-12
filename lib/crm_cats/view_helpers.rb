@@ -13,10 +13,10 @@ module CrmCats
       model.cats.inject([]) do |arr, cat|
         query = controller.send(:current_query) || ""
         hashcat = "$#{cat.id}"
-        if query.empty?
-          query = hashcat
-        elsif !query.include?(hashcat)
+        if !query.include?(hashcat) || !query.include?("$") || !query.empty?
           query += " #{hashcat}"
+        else
+          query = hashcat
         end
         arr << link_to_function(cat.long_name, "crm.search_categorized('#{query}', '#{model.class.to_s.tableize}')", :title => cat.description)
       end.join(" ")
@@ -62,6 +62,12 @@ module CrmCats
       end
       
       return 0      
+    end
+    
+    # Quick-fix for view_hooks translations not working (needs review of fcc code)
+    #----------------------------------------------------------------------------
+    def get_cats_translation(string)
+      t(string.to_sym)
     end
     
   end
