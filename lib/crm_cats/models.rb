@@ -3,7 +3,7 @@
 [ Account, Campaign, Contact, Lead, Opportunity ].each do |klass|
   klass.class_eval do
     has_many :cattings, :foreign_key => 'cattable_id', :dependent => :destroy
-    has_many :cats, :through => :cattings, :uniq => true
+    has_many :cats, :through => :cattings, :uniq => true, :conditions => "cat_type = '#{klass}'"
     
     if respond_to?(:named_scope)
       named_scope :categorized_with, lambda{ |cat, options|
