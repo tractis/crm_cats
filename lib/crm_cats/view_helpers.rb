@@ -11,14 +11,7 @@ module CrmCats
     #----------------------------------------------------------------------------
     def cats_for_index(model)
       model.cats.inject([]) do |arr, cat|
-        query = controller.send(:current_query) || ""
-        hashcat = "$#{cat.id}"
-        if !query.include?(hashcat) || !query.include?("$") || !query.empty?
-          query += " #{hashcat}"
-        else
-          query = hashcat
-        end
-        arr << link_to_function(cat.long_name, "crm.search_categorized('#{query}', '#{model.class.to_s.tableize}')", :title => cat.description)
+        arr << link_to_function(cat.long_name, "crm.search_categorized('$#{cat.id}', '#{model.class.to_s.tableize}')", :title => cat.description)
       end.join(" ")
     end
 

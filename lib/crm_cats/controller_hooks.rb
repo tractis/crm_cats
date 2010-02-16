@@ -87,12 +87,12 @@ class ControllerHooks < FatFreeCRM::Callback::Base
     
     search_string.scan(/[\w$]+/).each do |token|
       if token.starts_with?("$")
-        cats << token[1 .. -1]
+        cats = token[1 .. -1]
       else
         query << token
       end
     end
-    [ query.join(" "), cats.join(", ") ]
+    [ query.join(" "), cats ]
   end
 
 end
