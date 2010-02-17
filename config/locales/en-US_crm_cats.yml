@@ -13,3 +13,4 @@ en-US:
   save_cat: Save
   select_cats: Select the categories (multiselect)
   cat_filter_by: Filter by category
+  cats: Categories
