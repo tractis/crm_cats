@@ -1,4 +1,4 @@
-class ViewHooks < FatFreeCRM::Callback::Base
+class CrmCatsViewHooks < FatFreeCRM::Callback::Base
   
   CATS_FIELD = <<EOS
 %tr

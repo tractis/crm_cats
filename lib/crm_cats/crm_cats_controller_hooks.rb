@@ -1,4 +1,4 @@
-class ControllerHooks < FatFreeCRM::Callback::Base
+class CrmCatsControllerHooks < FatFreeCRM::Callback::Base
 
   # :get_accounts and :get_contacts hooks that don't have filters.
   #----------------------------------------------------------------------------
