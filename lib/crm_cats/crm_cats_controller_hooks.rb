@@ -29,7 +29,8 @@ class CrmCatsControllerHooks < FatFreeCRM::Callback::Base
     define_method :"get_#{klass.to_s.tableize}" do |controller, context|
       session, params, search_string = controller.session, controller.params, controller.send(:current_query)
       query, cats = parse_query_and_cats(search_string)
-      filter = :"filter_by_#{klass.to_s.downcase.singularize}_status"
+      
+      klass.to_s == "Opportunity" ? filter = :"filter_by_#{klass.to_s.downcase.singularize}_stage" : filter = :"filter_by_#{klass.to_s.downcase.singularize}_status"
 
       if session[filter]                                                # With filters...
         filtered = session[filter].split(",")
