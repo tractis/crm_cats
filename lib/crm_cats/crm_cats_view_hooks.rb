@@ -85,11 +85,11 @@ EOS
       end
     end
     
-    define_method :"index_#{model}_sidebar_bottom" do |view, context|
-      unless Cat.find_for_model(model.to_s.camelize).empty?
-        Haml::Engine.new(CATS_FOR_LANDING).render(view, :model => context[model])
-      end
-    end
+#    define_method :"index_#{model}_sidebar_bottom" do |view, context|
+#      unless Cat.find_for_model(model.to_s.camelize).empty?
+#        Haml::Engine.new(CATS_FOR_LANDING).render(view, :model => context[model])
+#      end
+#    end
 
   end
 
