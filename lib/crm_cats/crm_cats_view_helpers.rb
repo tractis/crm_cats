@@ -11,12 +11,7 @@ module CrmCats
     #----------------------------------------------------------------------------
     def cats_for_index(model)    
       model.cats.inject([]) do |arr, cat|
-        # Ajax category filter if viewed from same controller (not from other asset, ex. viewing contacts from account view)
-        if model.class.to_s.downcase.pluralize == controller.controller_name.to_s
-          arr << link_to_function(cat.long_name, "crm.search_categorized('$#{cat.id}', '#{model.class.to_s.tableize}')", :title => cat.description)
-        else
-          arr << link_to(cat.long_name, { :controller => model.class.to_s.downcase.pluralize, :query => "$#{cat.id}" }, { :title => cat.description })
-        end
+        arr << link_to(cat.long_name, "#{send("search_#{model.class.to_s.downcase.pluralize}_path")}?query[cats.id][match]=eq&query[cats.id][value][]=#{cat.id}", { :title => cat.description })
       end.join(" ")
     end
 
