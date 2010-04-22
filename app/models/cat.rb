@@ -9,7 +9,6 @@ class Cat < ActiveRecord::Base
   
   acts_as_nested_set
   acts_as_paranoid
-  simple_column_search :name, :description, :escape => lambda { |query| query.gsub(/[^\w\s\-\.']/, "").strip }
 
   named_scope :find_for_model, lambda { |model|
     { :conditions => { :cat_type => model } }
