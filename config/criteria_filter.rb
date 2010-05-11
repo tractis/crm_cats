@@ -9,17 +9,14 @@ def get_crm_cats_criteria_filters
 end
 
 def get_crm_cat_criteria_options(model)
-  lambda { |options| Cat.find_for_model(model).map { |cat| [cat.long_name, cat.id] } }
+  lambda { |options| 
+    Cat.find_for_model(model).sort! { |a,b| a.long_name <=> b.long_name }.map { |cat| [cat.long_name, cat.id] }
+  }
 end
 
 def get_crm_cat_criteria_condition
   lambda { |value, model| 
-    cats_querys = ["cats.id = #{value}"]
-    
-    Cat.find(value.first).ancestors.map {|cat| cat.id }.each do |anc_cat|
-      cats_querys << "cats.id = #{anc_cat}"
-    end
-
-    "(#{cats_querys.join(" or ")}) and cat_type = '#{model.to_s}'"
+    cat_ids = Cat.get_all_childrens(value.first) + [value.first]
+    "cats.id in (#{cat_ids.join(",")}) and cat_type = '#{model.to_s}'"
   }
 end

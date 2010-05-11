@@ -19,7 +19,19 @@ class Cat < ActiveRecord::Base
   end
 
   def self.find_children(start_id = nil)
-    start_id.to_i == 0 ? root_nodes : find(start_id).direct_children
+    start_id.to_i == 0 ? root_nodes : find(start_id).children
+  end
+
+  def self.get_all_childrens(start_id = nil)
+    return root_nodes if start_id.to_i == 0
+    childs = []
+    find(start_id).child_ids.each do |child|
+      childs << child
+      find(child).child_ids.each do |child_of_child|
+        childs << child_of_child
+      end
+    end
+    childs
   end
   
   def leaf
