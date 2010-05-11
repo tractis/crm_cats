@@ -13,5 +13,13 @@ def get_crm_cat_criteria_options(model)
 end
 
 def get_crm_cat_criteria_condition
-  lambda { |value, model| "(cats.id = #{value} or cats.parent_id = #{value}) and cat_type = '#{model.to_s}'" }
+  lambda { |value, model| 
+    cats_querys = ["cats.id = #{value}"]
+    
+    Cat.find(value.first).ancestors.map {|cat| cat.id }.each do |anc_cat|
+      cats_querys << "cats.id = #{anc_cat}"
+    end
+
+    "(#{cats_querys.join(" or ")}) and cat_type = '#{model.to_s}'"
+  }
 end
