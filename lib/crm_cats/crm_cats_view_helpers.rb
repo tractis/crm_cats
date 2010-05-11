@@ -10,7 +10,7 @@ module CrmCats
     # Generate cat links for use on asset index pages.
     #----------------------------------------------------------------------------
     def cats_for_index(model)    
-      model.cats.inject([]) do |arr, cat|
+      model.class.to_s.constantize.find(model.id).cats.inject([]) do |arr, cat|
         arr << link_to(cat.long_name, "#{send("search_#{model.class.to_s.downcase.pluralize}_path")}?query[cats.id][match]=eq&query[cats.id][value][]=#{cat.id}", { :title => cat.description })
       end.join(" ")
     end
@@ -18,8 +18,8 @@ module CrmCats
     # Generate cat links for the asset landing page (shown on a sidebar).
     #----------------------------------------------------------------------------
     def cats_for_show(model)
-      model.cats.inject([]) do |arr, cat|
-        arr << link_to(cat.long_name, url_for(:action => "categorized", :id => cat), :title => cat.description)
+      model.class.to_s.constantize.find(model.id).cats.inject([]) do |arr, cat|
+        arr << link_to(cat.long_name, "#{send("search_#{model.class.to_s.downcase.pluralize}_path")}?query[cats.id][match]=eq&query[cats.id][value][]=#{cat.id}", { :title => cat.description })
       end.join(" ")
     end
   

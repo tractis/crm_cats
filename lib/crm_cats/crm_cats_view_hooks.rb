@@ -16,11 +16,6 @@ EOS
 .cats(style="margin:4px 0px 4px 0px")= cats_for_show(model)
 EOS
 
-  CATS_FOR_LANDING = <<EOS
-%h4= get_cats_translation('cat_filter_by')
-.cats= cats_for_landing  
-EOS
-
   CATS_STYLES = <<EOS
 .cats, .list li dt .cats
   a:link, a:visited
@@ -84,12 +79,6 @@ EOS
         Haml::Engine.new(CATS_FOR_SHOW).render(view, :model => context[model])
       end
     end
-    
-#    define_method :"index_#{model}_sidebar_bottom" do |view, context|
-#      unless Cat.find_for_model(model.to_s.camelize).empty?
-#        Haml::Engine.new(CATS_FOR_LANDING).render(view, :model => context[model])
-#      end
-#    end
 
   end
 
